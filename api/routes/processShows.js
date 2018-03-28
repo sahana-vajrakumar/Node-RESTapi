@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const requestBody = require('./schema');
+const validate = require('express-validation');
 
 
-router.post('/', (req, res, next) => {
+
+router.post('/', validate(requestBody),(req, res, next) => {
 
   const shows = req.body.payload;
   // console.log(shows);
@@ -14,7 +17,7 @@ router.post('/', (req, res, next) => {
 
 
   res.status(200).json({
-    message: 'Handling POST requests to /shows',
+
     response: showArray.map(obj => {
       let rObj = {};
       rObj.image = obj.image.showImage;

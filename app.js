@@ -8,14 +8,13 @@ const processShowsRoutes = require('./api/routes/processShows');
 app.use(morgan('dev'));
 //app.use(bodyParser.json());
 
-app.use(bodyParser.json({
-    type: function() {
-        return true;
-    }
-}));
+app.use(bodyParser.json({ type: 'application/json' }))
 
-
-
+// app.use(bodyParser.json({
+//     type: function() {
+//         return true;
+//     }
+// }));
 
 app.use((res, req, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -36,11 +35,18 @@ app.use((req,res,next) =>{
 });
 
 app.use((error,req,res,next) =>{
+
+  let errorMessage;
   res.status(error.status || 500);
+
+  if(error.status==400){
+    errorMessage = "Could not decode request: JSON parsing failed";
+    console.log(error.message);
+  }
 
   res.json({
 
-      error: error.message
+      error: errorMessage || error.message
 
   })
 
