@@ -17,11 +17,6 @@ router.post('/', validate(requestBody), (req, res, next) => {
 
     response: showArray.map(obj => {
       let rObj = {};
-      //   if(("slug" in obj) &&("image" in obj) && ("title" in obj)){
-      //   rObj.image = obj.image.showImage;
-      //   rObj.slug = obj.slug;
-      //   rObj.title = obj.title;
-      // }
 
       "image" in obj
         ? rObj.image = obj.image.showImage

@@ -1,7 +1,11 @@
 const Joi = require('joi');
 
 const bodySchema = {
+  options: {
+    contextRequest: true
+  },
   body: {
+
     payload: Joi.array().items(Joi.object({
 
       country: Joi.string(),
