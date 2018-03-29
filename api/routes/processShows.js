@@ -3,9 +3,7 @@ const router = express.Router();
 const requestBody = require('./schema');
 const validate = require('express-validation');
 
-
-
-router.post('/', validate(requestBody),(req, res, next) => {
+router.post('/', validate(requestBody), (req, res, next) => {
 
   const shows = req.body.payload;
   // console.log(shows);
@@ -15,14 +13,19 @@ router.post('/', validate(requestBody),(req, res, next) => {
   console.log(showArray);
   console.log(showArray.length);
 
-
   res.status(200).json({
 
     response: showArray.map(obj => {
       let rObj = {};
-      rObj.image = obj.image.showImage;
-      rObj.slug = obj.slug;
-      rObj.title = obj.title;
+    //   if(("slug" in obj) &&("image" in obj) && ("title" in obj)){
+    //   rObj.image = obj.image.showImage;
+    //   rObj.slug = obj.slug;
+    //   rObj.title = obj.title;
+    // }
+
+    "slug" in obj ? rObj.slug = obj.slug : rObj.slug = "null";
+    "image" in obj ? rObj.image = obj.image.showImage : rObj.image = "null";
+    "title" in obj ? rObj.title = obj.title : rObj.title = "null";
 
       return rObj;
 
