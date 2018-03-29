@@ -17,15 +17,21 @@ router.post('/', validate(requestBody), (req, res, next) => {
 
     response: showArray.map(obj => {
       let rObj = {};
-    //   if(("slug" in obj) &&("image" in obj) && ("title" in obj)){
-    //   rObj.image = obj.image.showImage;
-    //   rObj.slug = obj.slug;
-    //   rObj.title = obj.title;
-    // }
+      //   if(("slug" in obj) &&("image" in obj) && ("title" in obj)){
+      //   rObj.image = obj.image.showImage;
+      //   rObj.slug = obj.slug;
+      //   rObj.title = obj.title;
+      // }
 
-    "slug" in obj ? rObj.slug = obj.slug : rObj.slug = "null";
-    "image" in obj ? rObj.image = obj.image.showImage : rObj.image = "null";
-    "title" in obj ? rObj.title = obj.title : rObj.title = "null";
+      "image" in obj
+        ? rObj.image = obj.image.showImage
+        : rObj.image = "null";
+      "slug" in obj
+        ? rObj.slug = obj.slug
+        : rObj.slug = "null";
+      "title" in obj
+        ? rObj.title = obj.title
+        : rObj.title = "null";
 
       return rObj;
 
