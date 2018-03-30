@@ -1,5 +1,7 @@
+//Object schema description language and validator for JavaScript objects.
 const Joi = require('joi');
 
+//Defining input request for /shows uri
 const bodySchema = {
   options: {
     contextRequest: true
